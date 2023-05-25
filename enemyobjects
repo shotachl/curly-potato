@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.UI;
+
+public class enemiesScript : MonoBehaviour
+{
+    public GameObject Player;
+
+    private float speed = 4;
+
+    private Vector3 direction;
+
+    private void Start()
+    {
+
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        direction = (playerObject.transform.position - transform.position).normalized;
+
+    }
+
+    void Update()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
+
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+}
